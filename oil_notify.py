@@ -5,7 +5,10 @@ import bs4
 query = urllib.parse.quote_plus('油價格')
 # print(query)
 url=f'https://www.ptt.cc/bbs/Lifeismoney/search?q={query}'
-def get_data(url):
+def get_data(url:str):
+    """
+    去ptt省錢版get資料來源
+    """
     res=requests.get(url,headers={
         'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36'
     })
@@ -16,5 +19,31 @@ def get_data(url):
     return title[5:]
 
 get_data(url)
-data=get_data(url)+"\n\n中油小幫手關心您        ´∀`)~♥"
+data=f'{get_data(url)}\n'+' '*13+'中油小幫手~關心您\n'+' '*25+'ξ( ✿＞◡❛)~♥'
 # print(data)
+
+
+def postToLine(token:str,data:str):
+    """
+    串接line notify api將組好的訊息post到line中
+    """
+    headers={
+        "Authorization":"Bearer "+token,
+        "Content-Type":"application/x-www-form-urlencoded"
+    }
+    payload={'message':data}
+    url="https://notify-api.line.me/api/notify"
+    
+    #Post封包給LINE notify
+    resp=requests.post(
+        url=url,
+        headers = headers,
+        params = payload
+    )
+    print(f'res status:{resp.status_code}')
+    print(type(resp))
+    return resp
+    
+token="hFzRAssbbx4XMmwkQ2vTLXrdzWJstTbM2MB8NxEky7k"
+resp=postToLine(token,data)
+print(resp.text)
