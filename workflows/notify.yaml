@@ -22,8 +22,7 @@ jobs:
           python-version: "3.9.13"  # 指定所需的 Python 版本
       
       - name: Install dependencies
-        run: |
-          if [ -f setup.txt ]; then pip install -r setup.txt; 
+        run: pip install -r setup.txt
 
       - name: Run Python Script
         run: oil_notify.py  # 執行您的 Python 腳本
