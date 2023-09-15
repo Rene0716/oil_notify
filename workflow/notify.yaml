@@ -1,0 +1,21 @@
+name: Run Python Script
+
+on:
+  schedule:
+    - cron: '0 12 * * 7'  # 每週日的中午（UTC時間）
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9  # 指定所需的 Python 版本
+
+      - name: Run Python Script
+        run: oil_notify.py  # 執行您的 Python 腳本
