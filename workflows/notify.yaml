@@ -26,6 +26,9 @@ jobs:
         uses: py-actions/py-dependency-install@v4
         with:
           path: "path/to/setup.txt"
+          update-pip: "false"
+          update-setuptools: "false"
+          update-wheel: "false"
 
       - name: Run Python Script
         run: oil_notify.py  # 執行您的 Python 腳本
