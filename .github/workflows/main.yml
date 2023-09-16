@@ -1,31 +1,33 @@
-name: Run Python Script
+name: Send Oil Notify
 
-# on:
-#   schedule:
-#     - cron: '45 2 * * 6'  # 每週日的中午（UTC時間）
 on:
-  push:
-    branches: [ "main" ]
+  schedule:
+    - cron: '45 2 * * 6'  # 每週日的中午（UTC時間）
+# on:
+#   push:
+#     branches: [ "main" ]
 
 jobs:
-  run:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - id: repo
+        name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
+      - id: package
+        name: Set up Python & Independencies
         uses: actions/setup-python@v4
         with:
           python-version: "3.9.13"  # 指定所需的 Python 版本
           cache: 'pip' # caching pip dependencies
-      
-      - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Test with pytest
-        run: pytest tests.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+      - id: ipynb
+        name: Jupyterbook execution
+        run: jupyter execute oil_notify.ipynb
+        shell: bash
 
-      - name: Run Python Script
-        run: python oil_notify.py  # 執行您的 Python 腳本
+      # - name: Run Python Script
+      #   run: python oil_notify.py  # 執行您的 Python 腳本
