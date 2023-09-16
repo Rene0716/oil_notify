@@ -8,8 +8,9 @@ on:
 #     branches: [ "main" ]
 
 jobs:
-  build:
+  run:
     runs-on: ubuntu-latest
+
     steps:
       - id: repo
         name: Checkout code
@@ -20,14 +21,14 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: "3.9"  # 指定所需的 Python 版本
-          cache: 'pip' # caching pip dependencies
+          # cache: 'pip' # caching pip dependencies
         # run: pip install -r requirements.txt
         run: pip install -r jup.txt  #jupyterbook exec file
 
       - id: ipynb
         name: Jupyterbook execution
         run: jupyter execute oil_notify.ipynb
-        
+
       - shell: bash
 
       # - name: Run Python Script
