@@ -10,22 +10,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - id: repo
-        name: Checkout code
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - id: package
-        name: Set up Python & Independencies
+      - name: Set up Python & Independencies
         uses: actions/setup-python@v2
         with:
           python-version: "3.9"  # 指定所需的 Python 版本
           cache: 'pip' # caching pip dependencies
         run: pip install -r requirements.txt
 
-      - id: jupyter
-        name: Jupyterbook execution
+      - name: Jupyterbook execution
         run: jupyter execute oil_notify.ipynb
 
       - shell: bash
