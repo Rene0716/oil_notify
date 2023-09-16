@@ -1,14 +1,14 @@
 name: Oil Notify
 
-# on:
-#   schedule:
-#     - cron: '45 14 * * 0'  # 每週日的中午（UTC時間）
 on:
-  push:
-    branches: [ "main" ]
+  schedule:
+    - cron: '45 12 * * 0'  # 每週日的中午（UTC時間）
+# on:
+#   push:
+#     branches: [ "main" ]
 
 jobs:
-  run:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,11 +21,10 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: "3.9"  # 指定所需的 Python 版本
-          # cache: 'pip' # caching pip dependencies
-        # run: pip install -r requirements.txt
-        run: pip install -r jup.txt  #jupyterbook exec file
+          cache: 'pip' # caching pip dependencies
+        run: pip install -r requirements.txt
 
-      - id: ipynb
+      - id: jupyter
         name: Jupyterbook execution
         run: jupyter execute oil_notify.ipynb
 

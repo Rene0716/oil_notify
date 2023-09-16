@@ -1,5 +1,0 @@
-jupyterlab
-nbclient
-bs4
-requests
-urllib3
