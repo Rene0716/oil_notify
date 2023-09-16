@@ -1,6 +1,7 @@
 import urllib.parse
 import requests
 import bs4
+import pytest
 
 query = urllib.parse.quote_plus('油價格')
 # print(query)

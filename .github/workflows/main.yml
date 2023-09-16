@@ -24,5 +24,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Test with pytest
+        run: pytest tests.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+
       - name: Run Python Script
         run: python oil_notify.py  # 執行您的 Python 腳本
