@@ -45,6 +45,6 @@ def postToLine(token:str,data:str):
     print(type(resp))
     return resp
     
-token="hFzRAssbbx4XMmwkQ2vTLXrdzWJstTbM2MB8NxEky7k"
+token="7n1Fwzn91AoQZc5l7Dam30CYOIJX1Bt3UGpvmrbfYkv"
 resp=postToLine(token,data)
 print(resp.text)
