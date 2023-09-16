@@ -20,14 +20,13 @@ jobs:
         with:
           python-version: "3.9"  # 指定所需的 Python 版本
           cache: 'pip' # caching pip dependencies
-          
+
       - name: Install dependencies
         run: pip install -r requirements.txt
 
       - name: Jupyterbook execution
         run: jupyter execute oil_notify.ipynb
-
-      - shell: bash
+        shell: bash
 
       # - name: Run Python Script
       #   run: python oil_notify.py  # 執行您的 Python 腳本
