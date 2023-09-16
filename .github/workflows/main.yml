@@ -2,7 +2,7 @@ name: Send Oil Notify
 
 on:
   schedule:
-    - cron: '45 2 * * 7'  # 每週日的中午（UTC時間）
+    - cron: '45 14 * * 0'  # 每週日的中午（UTC時間）
 # on:
 #   push:
 #     branches: [ "main" ]
