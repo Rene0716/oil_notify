@@ -13,13 +13,13 @@ jobs:
     steps:
       - id: repo
         name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - id: package
         name: Set up Python & Independencies
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v2
         with:
-          python-version: "3.9.13"  # 指定所需的 Python 版本
+          python-version: "3.9"  # 指定所需的 Python 版本
           cache: 'pip' # caching pip dependencies
         # run: pip install -r requirements.txt
         run: pip install -r jup.txt  #jupyterbook exec file
