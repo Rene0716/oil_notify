@@ -1,4 +1,4 @@
-name: Send Oil Notify
+name: Oil Notify
 
 on:
   schedule:
@@ -27,7 +27,8 @@ jobs:
       - id: ipynb
         name: Jupyterbook execution
         run: jupyter execute oil_notify.ipynb
-        shell: bash
+        
+      - shell: bash
 
       # - name: Run Python Script
       #   run: python oil_notify.py  # 執行您的 Python 腳本
