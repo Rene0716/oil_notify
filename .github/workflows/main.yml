@@ -2,15 +2,14 @@ name: Send Oil Notify
 
 on:
   schedule:
-    - cron: '45 2 * * 6'  # 每週日的中午（UTC時間）
+    - cron: '45 2 * * 7'  # 每週日的中午（UTC時間）
 # on:
 #   push:
 #     branches: [ "main" ]
 
 jobs:
-  run:
+  build:
     runs-on: ubuntu-latest
-
     steps:
       - id: repo
         name: Checkout code
@@ -22,7 +21,8 @@ jobs:
         with:
           python-version: "3.9.13"  # 指定所需的 Python 版本
           cache: 'pip' # caching pip dependencies
-        run: pip install -r requirements.txt
+        # run: pip install -r requirements.txt
+        run: pip install -r jup.txt  #jupyterbook exec file
 
       - id: ipynb
         name: Jupyterbook execution
