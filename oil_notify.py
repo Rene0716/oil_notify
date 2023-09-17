@@ -1,10 +1,8 @@
 import urllib.parse
 import requests
 import bs4
-import pytest
 
-query = urllib.parse.quote_plus('油價格')
-# print(query)
+query = urllib.parse.quote_plus('明')
 url=f'https://www.ptt.cc/bbs/Lifeismoney/search?q={query}'
 def get_data(url:str):
     """
@@ -15,14 +13,13 @@ def get_data(url:str):
     })
     # print(res.text)
     soup=bs4.BeautifulSoup(res.text,'html.parser')
-    title=soup.select('.title a')[2].text
-    # print(title)
-    return title[5:]
+    titles=soup.select('.title a')
+    latest=[titles[0].text for i, title in enumerate(titles)if '[情報]' not in title][0]
+    print(f'lastest:{latest[5:]}')
+    return latest[5:]
 
 get_data(url)
 data=f'{get_data(url)}\n'+' '*13+'中油小幫手~關心您\n'+' '*25+'ξ( ✿＞◡❛)~♥'
-# print(data)
-
 
 def postToLine(token:str,data:str):
     """
@@ -34,15 +31,14 @@ def postToLine(token:str,data:str):
     }
     payload={'message':data}
     url="https://notify-api.line.me/api/notify"
-    
     #Post封包給LINE notify
     resp=requests.post(
         url=url,
         headers = headers,
         params = payload
     )
-    print(f'res status:{resp.status_code}')
-    print(type(resp))
+    # print(f'res status:{resp.status_code}')
+    # print(type(resp))
     return resp
     
 token="7n1Fwzn91AoQZc5l7Dam30CYOIJX1Bt3UGpvmrbfYkv"
