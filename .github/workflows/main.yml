@@ -3,7 +3,7 @@ name: Oil Notify
 on:
   workflow_dispatch:      # 手動啟用工作流
   schedule:
-    - cron: '30 12 * * 0'  # 每週日的中午（UTC時間）
+    - cron: '0 12 * * 0'  # 每週日的中午（UTC時間）
 # on:
 #   push:
 #     branches: [ "main" ]
